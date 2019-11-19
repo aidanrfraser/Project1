@@ -79,7 +79,7 @@ class Shape:
         matters). Mutates squares and num_rotations
         Returns None
         """
-        self.numrotations = 0
+        self.num_rotations = 0
         initial = transpose(self)
         for i in range(len(initial)):
             initial[i] = initial[i][::-1]
