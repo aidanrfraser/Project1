@@ -120,8 +120,8 @@ def fits(location, grid, shape):
     """
     temp = []
     testing = True
-    for element1 in range(len(shape.squares) - 1):
-        for element2 in range(len(shape.squares[0]) - 1):
+    for element1 in range(len(shape.squares)):
+        for element2 in range(len(shape.squares[0])):
             if shape.squares[element1][element2] != grid.squares[location[0] + element1][location[1] + element2]:
                 temp += [True]
             else:
@@ -249,6 +249,8 @@ def get_shape(letter):
 #get score
 
 assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
+
+assertEqual(fits((0, 0), Grid(2, 3, [[False, False, False, False], [True, True, True, True]]), get_shape('I')), True)
 
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('L')), [(0, 0), (0, 1)])
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('Z')), [(0, 0), (0, 1)])
