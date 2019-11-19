@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from cisc106 import *
 import time
-"""from tkinter import""" 
+from tkinter import *
 
 #Working with Denise and Dylan, my name is Aidan
 
