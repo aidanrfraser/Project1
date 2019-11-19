@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from cisc106 import *
 import time
-"""from tkinter import""" 
+from tkinter import *
 
 #Working with Denise and Dylan, my name is Aidan
 
@@ -185,7 +185,6 @@ def find_max_score_location(grid, shape):
     Calls: rotate90, generate_all_locations, get_valid_locations, get_max_score
     """
     location_list = generate_all_locations(grid, shape)
-    get_valid_locations(location_list, grid, shape)
     if not location_list:
         return False
     else:
@@ -195,6 +194,7 @@ def find_max_score_location(grid, shape):
         bestLocation = (0,0)
         bestRotated = 0
         for element in range(4):
+            location_list = get_valid_locations(location_list, grid, shape)
             currentScore = get_max_score(location_list, grid, shape)[1]
             currentLocation = get_max_score(location_list, grid, shape)[0]
             maxScoreRow = get_max_score(location_list, grid, shape)[0][0]
