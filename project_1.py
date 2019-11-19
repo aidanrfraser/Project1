@@ -292,7 +292,7 @@ assertEqual(get_max_score([(0, 0), (0, 1)], Grid(3, 8, []), get_shape('Z')), ((0
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('L')), (True, 0, (0, 1)))
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('T')), (True, 0, (0, 1)))
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('Z')), (True, 0, (0, 1)))
-assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('I')), (True, 0, (0, 0)))
+assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('I')), (True, 0, (1, 0)))
 assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('L')), (True, 3, (0, 0)))
 assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('T')), (True, 3, (0, 0)))
 assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('Z')), (True, 1, (0, 0)))
