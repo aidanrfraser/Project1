@@ -235,7 +235,7 @@ def get_shape(letter):
     elif letter == 'Z':
         return Shape('Z', ((True, True, False), (False, True, True)), 0)
     elif letter == 'I':
-        return Shape('I', ((True, True, True, True)), 0)
+        return Shape('I', ((True, True, True, True),), 0)
 
 # assertEqual(get_shape('L'), ((False, False, True), (True, True, True)))
 # assertEqual(get_shape('T'), ((True, True, True), (False, True, False)))
@@ -250,7 +250,10 @@ def get_shape(letter):
 
 assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
 
-assertEqual(fits((0, 0), Grid(2, 3, [[False, False, False, False], [True, True, True, True]]), get_shape('I')), True)
+assertEqual(fits((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), True)
+assertEqual(fits((0, 0), Grid(2, 4, []), get_shape('I')), True)
+assertEqual(fits((0, 0), Grid(1, 4, []), get_shape('I')), True)
+assertEqual(fits((0, 0), Grid(2, 4, [[False, False, False, False], [True, True, True, True]]), get_shape('I')), True)
 
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('L')), [(0, 0), (0, 1)])
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('Z')), [(0, 0), (0, 1)])
