@@ -81,6 +81,7 @@ class Shape:
             initial[i] = initial[i][::-1]
         self.squares = initial
         self.num_rotations += 1
+        self.num_rotations = self.num_rotations % 4
         return None
     
 def generate_all_locations(grid, shape):
