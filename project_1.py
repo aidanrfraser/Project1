@@ -91,13 +91,11 @@ def generate_all_locations(grid, shape):
     Returns: a list of row,col tuples
     """
     location_list = []
-    rows = grid.numRows
-    cols = grid.numCols
-    for rows1 in range(grid.numRows):
-        for cols1 in range(grid.numCols):
-            if len(shape.squares[0]) <= (cols - cols1):
-                if len(shape.squares) <= (rows - rows1):
-                    location_list += [(rows1, cols1)]           
+    for rows in range(grid.numRows):
+        for cols in range(grid.numCols):
+            if rows + len(shape.squares) <= grid.numRows:
+                if cols + len(shape.squares[0]) <= grid.numCols:
+                    location_list += [(rows, cols)]
     return location_list
     
 def get_valid_locations(location_list, grid, shape):
