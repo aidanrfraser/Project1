@@ -213,6 +213,11 @@ def find_max_score_location(grid, shape):
                     bestLocation = currentLocation
                     shape.x = maxScoreCol
                     shape.y = maxScoreRow
+                elif currentRotated > bestRotated:
+                    bestRotated = bestRotated
+                    bestLocation = currentLocation
+                    shape.x = maxScoreCol
+                    shape.y = maxScoreRow
                 elif currentRotated == bestRotated:
                     bestLocation = currentLocation
                     shape.x = maxScoreCol
