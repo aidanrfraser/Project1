@@ -239,7 +239,7 @@ def get_shape(letter):
     elif letter == 'Z':
         return Shape('Z', ((True, True, False), (False, True, True)), 0)
     elif letter == 'I':
-        return Shape('I', ((False, False, False, False), (True, True, True, True)), 0)
+        return Shape('I', ((False, False, False), (True, True, True)), 0)
 """
 assertEqual(get_shape('L'),((False, False, True), (True, True, True)))
 assertEqual(get_shape('T'),((True, True, True), (False, True, False)))
@@ -247,11 +247,11 @@ assertEqual(get_shape('Z'),('Z',((True, True, False), (False, True, True)), 0))
 assertEqual(get_shape('I'), ((True, True, True, True)))
 """
 
-updategrid
-print
+#updategrid
+#print
 
-shape
-get score
+#shape
+#get score
 
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('L')), [(0, 0), (0, 1)])
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('Z')), [(0, 0), (0, 1)])
