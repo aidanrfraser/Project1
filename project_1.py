@@ -25,7 +25,7 @@ class Grid:
     """
     Has attributes numRows, numCols, and squares (a 2D list containing True/False).
     """
-    def __init__(self,rows,cols,squares):
+    def __init__(self, rows, cols, squares):
         self.numRows = rows
         self.numCols = cols
         self.squares = squares if squares else [cols * [False] for r in range(rows)]
@@ -94,7 +94,7 @@ def generate_all_locations(grid, shape):
     cols = grid.numCols
     for rows1 in range(grid.numRows):
         for cols1 in range(grid.numCols):
-            if len(shape.squares[0]) <= (cols- cols1):
+            if len(shape.squares[0]) <= (cols - cols1):
                 if len(shape.squares) <= (rows - rows1):
                     location_list += [(rows1, cols1)]           
     return location_list
