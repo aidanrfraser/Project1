@@ -166,8 +166,8 @@ def get_score(location, grid, shape):
     score = 0
     for row in range(len(shape.squares)):
         for col in range(len(shape.squares[0])):
-            if shape.squares[row][col] == False: 
-                if grid.squares[location[0] + row][location[1] + col] == True:
+            if shape.squares[row][col] == False:
+                if grid.squares[location[0] + row - 1][location[1] + col - 1] == True:
                     score += 1
     return score
     
