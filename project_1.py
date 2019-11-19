@@ -250,6 +250,7 @@ def get_shape(letter):
 
 assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
 
+
 assertEqual(fits((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), True)
 assertEqual(fits((0, 0), Grid(2, 4, []), get_shape('I')), True)
 assertEqual(fits((0, 0), Grid(1, 4, []), get_shape('I')), True)
