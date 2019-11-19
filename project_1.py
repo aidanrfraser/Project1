@@ -236,7 +236,7 @@ def get_shape(letter):
     elif letter == 'Z':
         return Shape('Z', ((True, True, False), (False, True, True)), 0)
     elif letter == 'I':
-        return Shape('I', ((False, False, False), (True, True, True)), 0)
+        return Shape('I', ((False, False, False, False), (True, True, True, True)), 0)
 """
 assertEqual(get_shape('L'),((False, False, True), (True, True, True)))
 assertEqual(get_shape('T'),((True, True, True), (False, True, False)))
