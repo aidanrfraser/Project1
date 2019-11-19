@@ -21,10 +21,6 @@ DEBUG = True
 # shape in place, and repeat with the next shape in the sequence.
 # We will add the graphics and high level functions in the next part.
 
-# 2 low level
-# 4 high level
-# 3 constructors
-
 class Grid:
     """
     Has attributes numRows, numCols, and squares (a 2D list containing True/False).
@@ -58,16 +54,16 @@ def transpose(shape):
     
 class Shape:
     """
-    A "shape" is a nested tuple, where the real world shape is
-    represented as ones. For example, an "L" shape could be represented as
+    A "shape" is a nested tuple
+    For example, an "L" shape could be represented as:
     ((False, False, True),(True, True, True))
     Has attributes x, y, letter, squares (a nested list of type boolean),
     color, num_rotations
     """
     
     def __init__(self, letter, squares, color):
-        self.x = 0 # will be modified later to indicate position
-        self.y = 0 # will be modified later to indicate position
+        self.x = 0
+        self.y = 0
         self.letter = letter
         self.squares = squares
         self.color = color
@@ -75,8 +71,8 @@ class Shape:
         
     def rotate90(self):
         """
-        Rotates this shape 90 degrees clockwise (direction
-        matters). Mutates squares and num_rotations
+        Rotates this shape 90 degrees clockwise
+        Mutates squares and num_rotations
         Returns None
         """
         self.num_rotations = 0
@@ -293,9 +289,9 @@ assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('T')), (True, 0, (
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('Z')), (True, 0, (0, 1)))
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('I')), (True, 0, (0, 1)))
 assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('L')), (True, 3, (1, 1)))
-assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('T')), (True, 0, (1, 1)))
-assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('Z')), (True, 0, (1, 1)))
-assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('I')), (True, 2, (1, 0)))
+assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('T')), (True, 3, (1, 1)))
+assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('Z')), (True, 1, (1, 1)))
+assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('I')), (True, 1, (1, 0)))
 assertEqual(find_max_score_location(Grid(4, 6, []), get_shape('L')), (True, 0, (2, 3)))
 assertEqual(find_max_score_location(Grid(4, 6, []), get_shape('T')), (True, 0, (2, 3)))
 
