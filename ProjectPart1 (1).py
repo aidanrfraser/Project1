@@ -167,9 +167,9 @@ def get_score(location, grid, shape):
     Returns: number
     """
     score = 0
-    for rowIndex in range(len(shape.squares)):
+    for rowIndex in range(len(shape.squares) - 1):
         row = rowIndex + location[0]
-        for colIndex in range(len(shape.squares[0])):
+        for colIndex in range(len(shape.squares[0]) - 1):
             col = colIndex + location[1]
             if bool(shape.squares[rowIndex][colIndex]) == False:
                 if bool(grid.squares[row][col]) == True:
@@ -257,7 +257,7 @@ assertEqual(get_max_score([(0, 0), (0, 1)], Grid(3, 8, []), get_shape('Z')), ((0
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('L')), (True, 0, (0, 1)))
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('T')), (True, 0, (0, 1)))
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('Z')), (True, 0, (0, 1)))
-assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('I')), (True, 0, (0, )))
+assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('I')), (True, 0, (0, 1)))
 assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('L')), (True, 3, (1, 1)))
 assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('T')), (True, 0, (1, 1)))
 assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('Z')), (True, 0, (1, 1)))
