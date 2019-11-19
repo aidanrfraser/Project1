@@ -167,10 +167,13 @@ def get_score(location, grid, shape):
     Returns: number
     """
     score = 0
-    for row in range(len(shape.squares) - 1):
-        for col in range(len(shape.squares[0]) - 1):
-            if shape.squares[row - 1][col - 1] == False and grid.squares[location[0] + row - 1][location[1] + col - 1] == True:
-                score += 1
+    for rowIndex in range(len(shape.squares)):
+        row = rowIndex + location[0]
+        for colIndex in range(len(shape.squares[0])):
+            col = colIndex + location[1]
+            if bool(shape.squares[rowIndex][colIndex]) == False:
+                if bool(grid.squares[row][col]) == True:
+                    score += 1
     return score
     
 def find_max_score_location(grid, shape):
