@@ -249,6 +249,8 @@ def get_shape(letter):
 #shape
 #get score
 
+assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
+
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('L')), [(0, 0), (0, 1)])
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('Z')), [(0, 0), (0, 1)])
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('T')), [(0, 0), (0, 1)])
