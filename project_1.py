@@ -164,10 +164,10 @@ def get_score(location, grid, shape):
     Returns: number
     """
     score = 0
-    for row in range(len(shape.squares) - 1):
-        for col in range(len(shape.squares[0]) - 1):
+    for row in range(len(shape.squares)):
+        for col in range(len(shape.squares[0])):
             if shape.squares[row][col] == False: 
-                if grid.squares[location[0] + row - 1][location[1] + col - 1] == True:
+                if grid.squares[location[0] + row][location[1] + col] == True:
                     score += 1
     return score
     
@@ -237,12 +237,11 @@ def get_shape(letter):
         return Shape('Z', ((True, True, False), (False, True, True)), 0)
     elif letter == 'I':
         return Shape('I', ((False, False, False, False), (True, True, True, True)), 0)
-"""
-assertEqual(get_shape('L'),((False, False, True), (True, True, True)))
-assertEqual(get_shape('T'),((True, True, True), (False, True, False)))
-assertEqual(get_shape('Z'),('Z',((True, True, False), (False, True, True)), 0))
-assertEqual(get_shape('I'), ((True, True, True, True)))
-"""
+
+# assertEqual(get_shape('L'), ((False, False, True), (True, True, True)))
+# assertEqual(get_shape('T'), ((True, True, True), (False, True, False)))
+# assertEqual(get_shape('Z'), ('Z',((True, True, False), (False, True, True)), 0))
+# assertEqual(get_shape('I'), ((False, False, False, False), (True, True, True, True))
 
 #updategrid
 #print
