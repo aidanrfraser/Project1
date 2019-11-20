@@ -1,4 +1,6 @@
-from packingProjectPart1 import *
+from project_1 import *
+
+# Group is Aidan, Dylan, and Denise
 
 class PackingSimulation():
     """
