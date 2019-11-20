@@ -132,7 +132,7 @@ def get_valid_locations(location_list, grid, shape):
         else:
             location_list = get_valid_locations(location_list[1:], grid, shape)
     return valid
-        
+
 def fits(location, grid, shape):
     """
     Returns True if shape placed at location does not overlap shapes
