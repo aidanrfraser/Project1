@@ -123,14 +123,16 @@ def get_valid_locations(location_list, grid, shape):
     Calls: fits
     """
     valid = []
-    for element in range(len(location_list)):
+    if not location_list:
+        return valid
+    else:
         if fits(location_list[0], grid, shape):
             valid += [(location_list[0])]
-            location_list = location_list[1:]
+            location_list = get_valid_locations(location_list[1:], grid, shape)
         else:
-            location_list = location_list[1:]
+            location_list = get_valid_locations(location_list[1:], grid, shape)
     return valid
-    
+        
 def fits(location, grid, shape):
     """
     Returns True if shape placed at location does not overlap shapes
@@ -164,6 +166,7 @@ def get_max_score(location_list, grid, shape):
         if get_score(location, grid, shape) > get_score(max_score_location, grid, shape):
             max_score = get_score(location, grid, shape)
             max_score_location = location
+            print(location_list)
         elif get_score(location, grid, shape) == get_score(max_score_location, grid, shape):
             if location[1] > max_score_location[1]:
                 max_score_location = location
@@ -171,6 +174,7 @@ def get_max_score(location_list, grid, shape):
             elif location[0] > max_score_location[0]:
                 max_score_location = location
                 max_score = get_score(location, grid, shape)
+    print(max_score_location, max_score)
     return ((max_score_location), max_score)
                                              
 def get_score(location, grid, shape):
@@ -200,7 +204,8 @@ def find_max_score_location(grid, shape):
     numberRotations: 0-3 rotations required for best fit.
     Calls: rotate90, generate_all_locations, get_valid_locations, get_max_score
     """
-    location_list = generate_all_locations(grid, shape)
+    location_list = get_valid_locations(generate_all_locations(grid, shape), grid, shape)
+    print(location_list)
     if not location_list:
         return False
     else:
