@@ -243,7 +243,6 @@ def find_max_score_location(grid, shape):
             shape.rotate90()
             currentRotated += 1
         return (fitting, bestRotated, bestLocation)
-
     
 def get_shape(letter):
     """
