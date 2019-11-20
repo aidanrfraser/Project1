@@ -43,7 +43,14 @@ class Grid:
         Print the grid, using an asterisk for each true square, underscore for false.
         Use a newline after each row, and no spaces in rows.
         """
-        print(self.squares)
+        for elt1 in range(self.numRows):
+            alist=self.squares[elt1]
+            for elt2 in range(self.numCols):
+                if alist[elt2]:
+                    print('*',end='\f')
+                else:
+                    print('_',end='\f')
+            print('\t')
     
 def transpose(shape):
     result = [len(shape.squares) * [False] for r in range(len(shape.squares[0]))]
