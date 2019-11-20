@@ -258,10 +258,10 @@ def get_shape(letter):
     elif letter == 'I':
         return Shape('I', ((True, True, True, True),), 0)
 
-# assertEqual(get_shape('L'), ((False, False, True), (True, True, True)))
-# assertEqual(get_shape('T'), ((True, True, True), (False, True, False)))
-# assertEqual(get_shape('Z'), ('Z',((True, True, False), (False, True, True)), 0))
-# assertEqual(get_shape('I'), ((False, False, False, False), (True, True, True, True))
+assertEqual(get_shape('L'), ((False, False, True), (True, True, True)))
+assertEqual(get_shape('T'), ((True, True, True), (False, True, False)))
+assertEqual(get_shape('Z'), ('Z',((True, True, False), (False, True, True)), 0))
+assertEqual(get_shape('I'), ((False, False, False, False), (True, True, True, True))
 
 #updategrid
 #print
