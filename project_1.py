@@ -139,27 +139,18 @@ def fits(location, grid, shape):
     already on grid.
     location: row,col tuple
     """
-    temp = []
-    testing = False
-    for element1 in range(len(shape.squares)):
-        for element2 in range(len(shape.squares[0])):
-            if shape.squares[element1][element2] == False: 
-                if grid.squares[location[0] + element1][location[1] + element2] == True:
-                    temp += [True]
-            if shape.squares[element1][element2] == True: 
-                if grid.squares[location[0] + element1][location[1] + element2] == False:
-                    temp += [True]
-            elif shape.squares[element1][element2] == True:
-                if grid.squares[location[0] + element1][location[1] + element2] == True:
-                    temp += [False]
-    for element in temp:
-        if element == False:
-            testing = False
-            
-    if testing == True:
-        return True
-    else: 
-        return False
+    tempSpace = []
+    for i in range(location[0], location[0] + len(shape.squares)):
+        if location[0] + len(shape.squares) > len(grid.squares):
+            return False
+        elif location[1] + len(shape.squares[0]) > len(grid.squares[i]):
+            return False
+        tempSpace += [grid.squares[i][location[1]:location[1] + len(shape.squares[0])]]
+    for x in range(len(tempSpace[0])):
+        for y in range(len(tempSpace)):
+            if tempSpace[y][x] and shape.squares[y][x]:
+                return False
+    return True
             
 def get_max_score(location_list, grid, shape):
     """
