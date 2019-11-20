@@ -143,14 +143,20 @@ def fits(location, grid, shape):
     testing = False
     for element1 in range(len(shape.squares)):
         for element2 in range(len(shape.squares[0])):
-            if shape.squares[element1][element2] != grid.squares[location[0] + element1][location[1] + element2]:
-                temp += [True]
-            elif shape.squares[element1][element2] == grid.squares[location[0] + element1][location[1] + element2]:
-                temp += [False]
+            if shape.squares[element1][element2] == False: 
+                if grid.squares[location[0] + element1][location[1] + element2] == True:
+                    temp += [True]
+            if shape.squares[element1][element2] == True: 
+                if grid.squares[location[0] + element1][location[1] + element2] == False:
+                    temp += [True]
+            elif shape.squares[element1][element2] == True:
+                if grid.squares[location[0] + element1][location[1] + element2] == True:
+                    temp += [False]
     for element in temp:
         if element == False:
             testing = False
-    if testing:
+            
+    if testing == True:
         return True
     else: 
         return False
