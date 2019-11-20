@@ -163,11 +163,11 @@ def get_max_score(location_list, grid, shape):
     for location in location_list:
         if get_score(location, grid, shape) > get_score(max_score_location, grid, shape):
             max_score = get_score(location, grid, shape)
-            max_score_location = (location)
-        if get_score(location, grid, shape) == get_score(max_score_location, grid, shape):
+            max_score_location = location
+        elif get_score(location, grid, shape) == get_score(max_score_location, grid, shape):
             if location[1] > max_score_location[1]:
                 max_score_location = location
-            if location[0] > max_score_location[0]:
+            elif location[0] > max_score_location[0]:
                 max_score_location = location
                 max_score = get_score(location, grid, shape)
     return ((max_score_location), max_score)
