@@ -149,7 +149,6 @@ def fits(location, grid, shape):
                 temp += [False]
     for element in temp:
         if element == False:
-            return False
             testing = False
     if testing:
         return True
@@ -263,13 +262,12 @@ def get_shape(letter):
 assertEqual(get_shape('L'), ((False, False, True), (True, True, True)))
 assertEqual(get_shape('T'), ((True, True, True), (False, True, False)))
 assertEqual(get_shape('Z'), ('Z',((True, True, False), (False, True, True)), 0))
-assertEqual(get_shape('I'), ((False, False, False, False), (True, True, True, True))
+assertEqual(get_shape('I'), ((False, False, False, False), (True, True, True, True)))
 
 #updategrid
 #print
 
 assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
-
 
 assertEqual(fits((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), True)
 assertEqual(fits((0, 0), Grid(2, 3, [[True, True, True], [True, True, True]]), get_shape('L')), False)
