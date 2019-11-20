@@ -254,6 +254,27 @@ def get_shape(letter):
     elif letter == 'I':
         return Shape('I', ((True, True, True, True),), 0)
 
+#Test for updateGrid
+a_Grid=Grid(2,4,[])
+a_Grid.updateGrid([[False,False,True],[True,True,True]])
+assertEqual(a_Grid.squares,[[False,False,True,False],[True,True,True,False]])
+assertEqual(a_Grid.updateGrid([[False,False,True],[True,True,True]]),True)
+
+b_Grid=Grid(2,4,[[False,False,False,False],[True,True,True,True]])
+b_Grid.updateGrid([[True,True,True,True]])
+assertEqual(b_Grid.squares,[[True,True,True,True],[True,True,True,True]])
+assertEqual(b_Grid.updateGrid([[True,True,True,True]]),True)
+
+c_Grid=Grid(2,4,[[True,True,True,True],[True,True,True,True]])
+c_Grid.updateGrid([[True,True,False],[False,True,True]])
+assertEqual(c_Grid.squares,[[True,True,True,True],[True,True,True,True]])
+assertEqual(c_Grid.updateGrid([[True,True,False],[False,True,True]]),False)
+
+d_Grid=Grid(2,4,[[True,True,False,True],[False,False,True,True]])
+d_Grid.updateGrid([[True,True,True],[False,True,False]])
+assertEqual(d_Grid.squares,[[True,True,False,True],[False,False,True,True]])
+assertEqual(d_Grid.updateGrid([[True,True,True],[False,True,False]]),False)
+    
 # Tests for get_shape
 assertEqual(get_shape('L'), Shape('L', ((False, False, True), (True, True, True)), 0))
 assertEqual(get_shape('T'), Shape('T', ((True, True, True), (False, True, False)), 0))
