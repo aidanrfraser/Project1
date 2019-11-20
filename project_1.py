@@ -140,15 +140,15 @@ def fits(location, grid, shape):
     location: row,col tuple
     """
     tempSpace = []
-    for i in range(location[0], location[0] + len(shape.squares)):
+    for element in range(location[0], location[0] + len(shape.squares)):
         if location[0] + len(shape.squares) > len(grid.squares):
             return False
-        elif location[1] + len(shape.squares[0]) > len(grid.squares[i]):
+        elif location[1] + len(shape.squares[0]) > len(grid.squares[element]):
             return False
-        tempSpace += [grid.squares[i][location[1]:location[1] + len(shape.squares[0])]]
-    for x in range(len(tempSpace[0])):
-        for y in range(len(tempSpace)):
-            if tempSpace[y][x] and shape.squares[y][x]:
+        tempSpace += [grid.squares[element][location[1]:location[1] + len(shape.squares[0])]]
+    for cols in range(len(tempSpace[0])):
+        for rows in range(len(tempSpace)):
+            if tempSpace[rows][cols] and shape.squares[rows][cols]:
                 return False
     return True
             
@@ -212,6 +212,7 @@ def find_max_score_location(grid, shape):
         bestRotated = 0
         for element in range(4):
             location_list = get_valid_locations(location_list, grid, shape)
+            print(location_list)
             currentScore = get_max_score(location_list, grid, shape)[1]
             currentLocation = get_max_score(location_list, grid, shape)[0]
             maxScoreRow = get_max_score(location_list, grid, shape)[0][0]
