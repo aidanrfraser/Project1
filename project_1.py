@@ -338,4 +338,33 @@ assertEqual(get_score((0,0),Grid(2, 6, []), get_shape('L')), 0)
 assertEqual(get_score((0,0),Grid(2, 6, []), get_shape('Z')), 0)
 assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
 
+#Tests for rotate90
+a_Shape=Shape('L',[[False,False,True],[True,True,True]],0)
+a_Shape.rotate90()
+assertEqual(a_Shape.squares,[[True,False],[True,False],[True,True]])
+a_Shape.rotate90()
+assertEqual(a_Shape.squares,[[True,True,True],[True,False,False]])
+a_Shape.rotate90()
+assertEqual(a_Shape.squares,[[True,True],[False,True],[False,True]])
+
+b_Shape=Shape('I',[[True,True,True,True]],0)
+b_Shape.rotate90()
+assertEqual(b_Shape.squares,[[True],[True],[True],[True]])
+b_Shape.rotate90()
+assertEqual(b_Shape.squares,[[True,True,True,True]])
+
+c_Shape=Shape('Z',[[True,True,False],[False,True,True]],0)
+c_Shape.rotate90()
+assertEqual(c_Shape.squares,[[False,True],[True,True],[True,False]])
+c_Shape.rotate90()
+assertEqual(c_Shape.squares,[[True,True,False],[False,True,True]])
+
+d_Shape=Shape('T',[[True,True,True],[False,True,False]],0)
+d_Shape.rotate90()
+assertEqual(d_Shape.squares,[[False,True],[True,True],[False,True]])
+d_Shape.rotate90()
+assertEqual(d_Shape.squares,[[False,True,False],[True,True,True]])
+d_Shape.rotate90()
+assertEqual(d_Shape.squares,[[True,False],[True,True],[True,False]])
+
 g.print()
