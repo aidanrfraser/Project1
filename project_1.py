@@ -37,19 +37,18 @@ class Grid:
         Calls: find_max_score_location
         Returns boolean: fits or not
         """
-        fits=find_max_score_location(self,shape)[0]
-        numberRotations=find_max_score_location(self,shape)[1]
-        location=find_max_score_location(self,shape)[2]
-        
-        for rotations in range(numberRotations):
+        testing=find_max_score_location(self,shape)
+        location=testing[2]
+        fits=testing[0]
+        numRotations=testing[1]
+        for rotations in range(numRotations):
             shape.rotate90
-        if fits==[False]:
-            return False
-        else:
-            for xlocation in range(location[0],location[0]+len(self.shape[0])):
-                for ylocation in range(location[1],location[1]+len(self.shape[0][xlocation])):
-                    if location[xlocation][ylocation]==True and self.squares[xlocation][ylocation]==False:
-                        self.squares[xlocation][ylocation]=True
+        for row in range(len(shape.squares)):
+            for col in range(len(shape.squares[0])):
+                if shape.squares[row][col]==True:
+                    self.squres[location[0]+row][location[1]+col]
+        self.print()
+        return fits
         
     def print(self):
         """
@@ -261,10 +260,10 @@ def get_shape(letter):
     elif letter == 'I':
         return Shape('I', ((True, True, True, True),), 0)
 
-# assertEqual(get_shape('L'), ((False, False, True), (True, True, True)))
-# assertEqual(get_shape('T'), ((True, True, True), (False, True, False)))
-# assertEqual(get_shape('Z'), ('Z',((True, True, False), (False, True, True)), 0))
-# assertEqual(get_shape('I'), ((False, False, False, False), (True, True, True, True))
+assertEqual(get_shape('L'), ((False, False, True), (True, True, True)))
+assertEqual(get_shape('T'), ((True, True, True), (False, True, False)))
+assertEqual(get_shape('Z'), ('Z',((True, True, False), (False, True, True)), 0))
+assertEqual(get_shape('I'), ((False, False, False, False), (True, True, True, True))
 
 #updategrid
 #print
