@@ -129,7 +129,9 @@ def get_valid_locations(location_list, grid, shape):
     for element in range(len(location_list)):
         if fits(location_list[0], grid, shape):
             valid += [(location_list[0])]
-        location_list = location_list[1:]
+            location_list = location_list[1:]
+        else:
+            location_list = location_list[1:]
     return valid
     
 def fits(location, grid, shape):
@@ -144,10 +146,10 @@ def fits(location, grid, shape):
         for element2 in range(len(shape.squares[0])):
             if shape.squares[element1][element2] != grid.squares[location[0] + element1][location[1] + element2]:
                 temp += [True]
-            else:
+            elif shape.squares[element1][element2] == grid.squares[location[0] + element1][location[1] + element2]:
                 temp += [False]
     for element in temp:
-        if False:
+        if element == False:
             return False
             testing = False
     if testing:
