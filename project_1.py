@@ -3,9 +3,7 @@ from cisc106 import *
 import time
 from tkinter import *
 
-#Working with Denise and Dylan, my name is Aidan
-
-DEBUG = True
+# Project group is Aidan, Dylan, and Denise
 
 # A grid is a 2D list containing ones or zeros. A "shape" is an
 # object containing a nested tuple, where the real world shape is
@@ -212,15 +210,10 @@ def find_max_score_location(grid, shape):
         bestRotated = 0
         for element in [1, 2, 3, 4]:
             location_list = get_valid_locations(location_list, grid, shape)
-            print(location_list)
             currentScore = get_max_score(location_list, grid, shape)[1]
-            print(currentScore)
             currentLocation = get_max_score(location_list, grid, shape)[0]
-            print(currentLocation)
             maxScoreRow = get_max_score(location_list, grid, shape)[0][0]
-            print(maxScoreRow)
             maxScoreCol = get_max_score(location_list, grid, shape)[0][1]
-            print(maxScoreCol)
             if currentScore > savedScore:
                 bestRotated = currentRotated
                 bestLocation = currentLocation
