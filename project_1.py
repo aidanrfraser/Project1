@@ -259,22 +259,20 @@ def get_shape(letter):
     elif letter == 'I':
         return Shape('I', ((True, True, True, True),), 0)
 
-assertEqual(get_shape('L'), ((False, False, True), (True, True, True)))
-assertEqual(get_shape('T'), ((True, True, True), (False, True, False)))
-assertEqual(get_shape('Z'), ('Z',((True, True, False), (False, True, True)), 0))
-assertEqual(get_shape('I'), ((False, False, False, False), (True, True, True, True)))
+# Tests for get_shape
+assertEqual(get_shape('L'), Shape('L', ((False, False, True), (True, True, True)), 0))
+assertEqual(get_shape('T'), Shape('T', ((True, True, True), (False, True, False)), 0))
+assertEqual(get_shape('Z'), Shape('Z', ((True, True, False), (False, True, True)), 0))
+assertEqual(get_shape('I'), Shape('I', ((False, False, False, False), (True, True, True, True)), 0))
 
-#updategrid
-#print
-
-assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
-
+# Tests for fits
 assertEqual(fits((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), True)
 assertEqual(fits((0, 0), Grid(2, 3, [[True, True, True], [True, True, True]]), get_shape('L')), False)
 assertEqual(fits((0, 0), Grid(2, 4, []), get_shape('I')), True)
 assertEqual(fits((0, 0), Grid(1, 4, []), get_shape('I')), True)
 assertEqual(fits((0, 0), Grid(2, 4, [[False, False, False, False], [True, True, True, True]]), get_shape('I')), True)
 
+# Tests for generate_all_locations
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('L')), [(0, 0), (0, 1)])
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('Z')), [(0, 0), (0, 1)])
 assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('T')), [(0, 0), (0, 1)])
@@ -287,6 +285,7 @@ assertEqual(generate_all_locations(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1
 assertEqual(generate_all_locations(Grid(2, 6, []), get_shape('L')), [(0, 0), (0, 1), (0, 2), (0, 3)])
 assertEqual(generate_all_locations(Grid(2, 6, []), get_shape('Z')), [(0, 0), (0, 1), (0, 2), (0, 3)])
 
+# Tests for get_valid_locations
 assertEqual(get_valid_locations([(0, 0), (0, 1)], Grid(2, 4, []), get_shape('L')), [(0, 0), (0, 1)])
 assertEqual(get_valid_locations([(0, 0), (0, 1)], Grid(2, 4, []), get_shape('Z')), [(0, 0), (0, 1)])
 assertEqual(get_valid_locations([(0, 0), (0, 1)], Grid(2, 4, []), get_shape('T')), [(0, 0), (0, 1)])
@@ -298,6 +297,7 @@ assertEqual(get_valid_locations([(0, 0), (1, 0), (2, 0)], Grid(3, 4, [[0, 0, 0, 
 assertEqual(get_valid_locations([(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3)], Grid(4, 6, []), get_shape('L')), [(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3)])
 assertEqual(get_valid_locations([(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3)], Grid(4, 6, []), get_shape('Z')), [(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3)])
 
+# Tests for get_max_score
 assertEqual(get_max_score([(0, 0), (0, 1)], Grid(2, 4, []), get_shape('L')), ((0, 1), 0))
 assertEqual(get_max_score([(0, 0), (0, 1)], Grid(2, 4, []), get_shape('Z')), ((0, 1), 0))
 assertEqual(get_max_score([(0, 0), (0, 1)], Grid(2, 4, []), get_shape('T')), ((0, 1), 0))
@@ -308,7 +308,9 @@ assertEqual(get_max_score([(0, 0), (0, 1), (0, 2), (0, 3), (1, 0), (2, 0), (1, 1
 assertEqual(get_max_score([(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2), (3, 0), (3, 1), (3, 2)], Grid(4, 6, []), get_shape('I')), ((3, 2), 0))
 assertEqual(get_max_score([(0, 0), (0, 1)], Grid(3, 8, []), get_shape('L')), ((0, 1), 0))
 assertEqual(get_max_score([(0, 0), (0, 1)], Grid(3, 8, []), get_shape('Z')), ((0, 1), 0))
-  
+assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
+
+# Tests for find_max_score_location
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('L')), (True, 0, (0, 1)))
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('T')), (True, 0, (0, 1)))
 assertEqual(find_max_score_location(Grid(2, 4, []), get_shape('Z')), (True, 0, (0, 1)))
@@ -319,7 +321,10 @@ assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 
 assertEqual(find_max_score_location(Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('I')), (True, 1, (0, 0)))
 assertEqual(find_max_score_location(Grid(4, 6, []), get_shape('L')), (True, 0, (2, 3)))
 assertEqual(find_max_score_location(Grid(4, 6, []), get_shape('T')), (True, 0, (2, 3)))
+g = Grid(2, 4, [[True, False, False, False], [False, False, False, False]])
+assertEqual(find_max_score_location( g, get_shape('L')), (True, 0, (0, 1))) 
 
+# Tests for get_score
 assertEqual(get_score((0,0),Grid(2, 4, []), get_shape('L')), 0)
 assertEqual(get_score((0,0),Grid(2, 4, []), get_shape('Z')), 0)
 assertEqual(get_score((0,0),Grid(2, 4, []), get_shape('T')), 0)
@@ -330,9 +335,6 @@ assertEqual(get_score((0,1),Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]
 assertEqual(get_score((0,1),Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('I')), 0)
 assertEqual(get_score((0,0),Grid(2, 6, []), get_shape('L')), 0)
 assertEqual(get_score((0,0),Grid(2, 6, []), get_shape('Z')), 0)
-
-g = Grid(2, 4, [[True, False, False, False], [False, False, False, False]])
-assertEqual(find_max_score_location( g, get_shape('L')), (True, 0, (0, 1))) 
 
 if DEBUG:
     assertEqual(generate_all_locations(Grid(2, 4, []), get_shape('L')), [(0, 0), (0, 1)])
