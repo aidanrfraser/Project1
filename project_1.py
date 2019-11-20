@@ -139,7 +139,7 @@ def fits(location, grid, shape):
     location: row,col tuple
     """
     temp = []
-    testing = True
+    testing = False
     for element1 in range(len(shape.squares)):
         for element2 in range(len(shape.squares[0])):
             if shape.squares[element1][element2] != grid.squares[location[0] + element1][location[1] + element2]:
@@ -271,6 +271,7 @@ assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, Fa
 
 
 assertEqual(fits((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), True)
+assertEqual(fits((0, 0), Grid(2, 3, [[True, True, True], [True, True, True]]), get_shape('L')), False)
 assertEqual(fits((0, 0), Grid(2, 4, []), get_shape('I')), True)
 assertEqual(fits((0, 0), Grid(1, 4, []), get_shape('I')), True)
 assertEqual(fits((0, 0), Grid(2, 4, [[False, False, False, False], [True, True, True, True]]), get_shape('I')), True)
