@@ -110,8 +110,8 @@ def generate_all_locations(grid, shape):
     location_list = []
     for rows in range(grid.numRows):
         for cols in range(grid.numCols):
-            if rows + len(shape.squares) <= grid.numRows:
-                if cols + len(shape.squares[0]) <= grid.numCols:
+            if int(rows) + len(shape.squares) <= grid.numRows:
+                if int(cols) + len(shape.squares[0]) <= grid.numCols:
                     location_list += [(rows, cols)]
     return location_list
     
