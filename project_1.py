@@ -123,9 +123,9 @@ def get_valid_locations(location_list, grid, shape):
     Calls: fits
     """
     valid = []
-    for x in location_list:
-        if fits(x,grid.shape):
-            valid=valid+[x]
+    for location in location_list:
+        if fits(location, grid.shape):
+            valid += [location]
     return valid
 
 def fits(location, grid, shape):
@@ -199,7 +199,8 @@ def find_max_score_location(grid, shape):
     numberRotations: 0-3 rotations required for best fit.
     Calls: rotate90, generate_all_locations, get_valid_locations, get_max_score
     """
-    location_list = get_valid_locations(generate_all_locations(grid, shape), grid, shape)
+    location_list = generate_all_locations(grid, shape)
+    location_list = get_valid_locations(location_list, grid, shape)
     print(location_list)
     if not location_list:
         return False
