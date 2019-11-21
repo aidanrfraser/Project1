@@ -124,7 +124,7 @@ def get_valid_locations(location_list, grid, shape):
     """
     valid = []
     for location in location_list:
-        if fits(location, grid.shape):
+        if fits(location, grid, shape):
             valid += [location]
     return valid
 
@@ -161,7 +161,6 @@ def get_max_score(location_list, grid, shape):
         if get_score(location, grid, shape) > get_score(max_score_location, grid, shape):
             max_score = get_score(location, grid, shape)
             max_score_location = location
-            print(location_list)
         elif get_score(location, grid, shape) == get_score(max_score_location, grid, shape):
             if location[1] > max_score_location[1]:
                 max_score_location = location
@@ -169,7 +168,6 @@ def get_max_score(location_list, grid, shape):
             elif location[0] > max_score_location[0]:
                 max_score_location = location
                 max_score = get_score(location, grid, shape)
-    print(max_score_location, max_score)
     return ((max_score_location), max_score)
                                              
 def get_score(location, grid, shape):
@@ -201,7 +199,6 @@ def find_max_score_location(grid, shape):
     """
     location_list = generate_all_locations(grid, shape)
     location_list = get_valid_locations(location_list, grid, shape)
-    print(location_list)
     if not location_list:
         return False
     else:
@@ -254,27 +251,6 @@ def get_shape(letter):
         return Shape('Z', ((True, True, False), (False, True, True)), 0)
     elif letter == 'I':
         return Shape('I', ((True, True, True, True),), 0)
-
-#Test for updateGrid
-a_Grid=Grid(2,4,[])
-a_Grid.updateGrid([[False,False,True],[True,True,True]])
-assertEqual(a_Grid.squares,[[False,False,True,False],[True,True,True,False]])
-assertEqual(a_Grid.updateGrid([[False,False,True],[True,True,True]]),True)
-
-b_Grid=Grid(2,4,[[False,False,False,False],[True,True,True,True]])
-b_Grid.updateGrid([[True,True,True,True]])
-assertEqual(b_Grid.squares,[[True,True,True,True],[True,True,True,True]])
-assertEqual(b_Grid.updateGrid([[True,True,True,True]]),True)
-
-c_Grid=Grid(2,4,[[True,True,True,True],[True,True,True,True]])
-c_Grid.updateGrid([[True,True,False],[False,True,True]])
-assertEqual(c_Grid.squares,[[True,True,True,True],[True,True,True,True]])
-assertEqual(c_Grid.updateGrid([[True,True,False],[False,True,True]]),False)
-
-d_Grid=Grid(2,4,[[True,True,False,True],[False,False,True,True]])
-d_Grid.updateGrid([[True,True,True],[False,True,False]])
-assertEqual(d_Grid.squares,[[True,True,False,True],[False,False,True,True]])
-assertEqual(d_Grid.updateGrid([[True,True,True],[False,True,False]]),False)
     
 # Tests for get_shape
 assertEqual(get_shape('L'), Shape('L', ((False, False, True), (True, True, True)), 0))
@@ -358,31 +334,52 @@ assertEqual(get_score((0,0),Grid(2, 6, []), get_shape('Z')), 0)
 assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
 assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
 
-#Tests for rotate90
-a_Shape=Shape('L',[[False,False,True],[True,True,True]],0)
+# Tests for rotate90
+a_Shape = Shape('L',[[False, False, True], [True, True, True]], 0)
 a_Shape.rotate90()
-assertEqual(a_Shape.squares,[[True,False],[True,False],[True,True]])
+assertEqual(a_Shape.squares,[[True, False], [True, False], [True, True]])
 a_Shape.rotate90()
-assertEqual(a_Shape.squares,[[True,True,True],[True,False,False]])
+assertEqual(a_Shape.squares,[[True, True, True], [True, False, False]])
 a_Shape.rotate90()
-assertEqual(a_Shape.squares,[[True,True],[False,True],[False,True]])
+assertEqual(a_Shape.squares,[[True, True], [False, True], [False, True]])
 
-b_Shape=Shape('I',[[True,True,True,True]],0)
+b_Shape = Shape('I',[[True, True, True, True],], 0)
 b_Shape.rotate90()
-assertEqual(b_Shape.squares,[[True],[True],[True],[True]])
+assertEqual(b_Shape.squares,[[True], [True], [True], [True]])
 b_Shape.rotate90()
-assertEqual(b_Shape.squares,[[True,True,True,True]])
+assertEqual(b_Shape.squares,[[True, True, True, True],])
 
-c_Shape=Shape('Z',[[True,True,False],[False,True,True]],0)
+c_Shape = Shape('Z',[[True, True, False], [False, True, True]], 0)
 c_Shape.rotate90()
-assertEqual(c_Shape.squares,[[False,True],[True,True],[True,False]])
+assertEqual(c_Shape.squares,[[False, True], [True, True], [True, False]])
 c_Shape.rotate90()
-assertEqual(c_Shape.squares,[[True,True,False],[False,True,True]])
+assertEqual(c_Shape.squares,[[True, True, False], [False, True, True]])
 
-d_Shape=Shape('T',[[True,True,True],[False,True,False]],0)
+d_Shape = Shape('T',[[True, True, True], [False, True, False]], 0)
 d_Shape.rotate90()
-assertEqual(d_Shape.squares,[[False,True],[True,True],[False,True]])
+assertEqual(d_Shape.squares,[[False, True], [True, True], [False, True]])
 d_Shape.rotate90()
-assertEqual(d_Shape.squares,[[False,True,False],[True,True,True]])
+assertEqual(d_Shape.squares,[[False, True, False], [True, True, True]])
 d_Shape.rotate90()
-assertEqual(d_Shape.squares,[[True,False],[True,True],[True,False]])
+assertEqual(d_Shape.squares,[[True, False], [True, True], [True, False]])
+
+# Tests for updateGrid
+a_Grid = Grid(2, 4, [])
+a_Grid.updateGrid([[False, False, True], [True, True, True]])
+assertEqual(a_Grid.squares,[[False, False, True, False], [True, True, True, False]])
+assertEqual(a_Grid.updateGrid([[False, False, True], [True, True, True]]), True)
+
+b_Grid = Grid(2, 4, [[False, False, False, False], [True, True, True, True]])
+b_Grid.updateGrid([[True, True, True, True]])
+assertEqual(b_Grid.squares, [[True, True, True, True], [True, True, True, True]])
+assertEqual(b_Grid.updateGrid([[True, True, True, True]]), True)
+
+c_Grid = Grid(2, 4, [[True, True, True, True], [True, True, True, True]])
+c_Grid.updateGrid([[True, True, False], [False, True, True]])
+assertEqual(c_Grid.squares, [[True, True, True, True], [True, True, True, True]])
+assertEqual(c_Grid.updateGrid([[True, True, False], [False, True, True]]), False)
+
+d_Grid = Grid(2, 4, [[True, True, False, True], [False, False, True, True]])
+d_Grid.updateGrid([[True, True, True], [False, True, False]])
+assertEqual(d_Grid.squares, [[True, True, False, True], [False, False, True, True]])
+assertEqual(d_Grid.updateGrid([[True, True, True], [False, True, False]]), False)
