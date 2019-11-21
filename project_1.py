@@ -123,14 +123,9 @@ def get_valid_locations(location_list, grid, shape):
     Calls: fits
     """
     valid = []
-    if not location_list:
-        return valid
-    else:
-        if fits(location_list[0], grid, shape):
-            valid += [(location_list[0])]
-            location_list = get_valid_locations(location_list[1:], grid, shape)
-        else:
-            location_list = get_valid_locations(location_list[1:], grid, shape)
+    for x in location_list:
+        if fits(x,grid.shape):
+            valid=valid+[x]
     return valid
 
 def fits(location, grid, shape):
