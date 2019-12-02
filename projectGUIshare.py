@@ -36,7 +36,7 @@ class PackingSimulation():
         for row in self.shapes:
             for col in self.shapes:
                 if shape.squares[row][col] == True:
-                    self.draw_square(row, col, fill = shape.color)
+                    self.draw_square(row, col, shape.color)
                     
     def run(self, grid):
         print("run************************************")
