@@ -179,11 +179,11 @@ def get_score(location, grid, shape):
     location: row,col tuple
     Returns: number
     """
-    score=0
+    score = 0
     for row in range(len(shape.squares)):
         for col in range(len(shape.squares[0])):
             if (not shape.squares[row][col]) and grid.squares[location[0]+row][location[1]+col]:
-                score+=1
+                score += 1
     return score
     
 def find_max_score_location(grid, shape):
@@ -206,7 +206,7 @@ def find_max_score_location(grid, shape):
         if maxScoreLocation[1] < currentScore[1]:
             maxScoreLocation = currentScore
             rotations = shape.num_rotations
-            fit = fits(maxScoreLocation[0], grid, shape)
+            fitting = fits(maxScoreLocation[0], grid, shape)
         elif maxScoreLocation[1] == currentScore[1] and currentScore[0] > maxScoreLocation[0]:
             maxScoreLocation = currentScore
             rotations = shape.num_rotations
