@@ -81,8 +81,8 @@ def start(rows,cols):
     root_window = Tk()
     pack_sim = PackingSimulation(rows, cols, shapes, root_window)
 
-    pack_sim.draw_square(0,0,'blue') #comment these out after you test
-    pack_sim.draw_square(2,2,'blue')
+    # pack_sim.draw_square(0,0,'blue') #comment these out after you test
+    # pack_sim.draw_square(2,2,'blue')
 
     #example test draw_shape; comment out before testing run
     pack_sim.draw_shape(Shape('L', ((False, False, True),(True, True, True)), 'orange'))
