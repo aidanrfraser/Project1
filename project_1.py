@@ -198,7 +198,7 @@ def find_max_score_location(grid, shape):
     numberRotations: 0-3 rotations required for best fit.
     Calls: rotate90, generate_all_locations, get_valid_locations, get_max_score
     """
-    maxScoreLocation = ((0 ,0), -1)
+    maxScoreLocation = ((0, 0), -1)
     currentScore = ()
     rotations = 0
     while shape.num_rotations<3:
@@ -210,10 +210,10 @@ def find_max_score_location(grid, shape):
         elif maxScoreLocation[1] == currentScore[1] and currentScore[0] > maxScoreLocation[0]:
             maxScoreLocation = currentScore
             rotations = shape.num_rotations
-            fit = fits(maxScoreLocation[0], grid, shape)
+            fitting = fits(maxScoreLocation[0], grid, shape)
         shape.rotate90()
     shape.rotate90()
-    return (fit, rotations, maxScoreLocation[0])
+    return (fitting, rotations, maxScoreLocation[0])
     
 def get_shape(letter):
     """
@@ -298,47 +298,47 @@ assertEqual(find_max_score_location(Grid(3, 4, [[True, False, False, False], [Fa
 assertEqual(find_max_score_location(Grid(3, 4, []), get_shape('L')), (True, 0, (0, 1)))
 
 # Tests for get_score
-assertEqual(get_score((0,0),Grid(2, 4, []), get_shape('L')), 0)
-assertEqual(get_score((0,0),Grid(2, 4, []), get_shape('Z')), 0)
-assertEqual(get_score((0,0),Grid(2, 4, []), get_shape('T')), 0)
-assertEqual(get_score((0,0),Grid(2, 4, []), get_shape('I')), 0)
-assertEqual(get_score((0,1),Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('L')), 0)
-assertEqual(get_score((0,1),Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('Z')), 0)
-assertEqual(get_score((0,1),Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('T')), 0)
-assertEqual(get_score((0,1),Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('I')), 0)
-assertEqual(get_score((0,0),Grid(2, 6, []), get_shape('L')), 0)
-assertEqual(get_score((0,0),Grid(2, 6, []), get_shape('Z')), 0)
+assertEqual(get_score((0, 0), Grid(2, 4, []), get_shape('L')), 0)
+assertEqual(get_score((0, 0), Grid(2, 4, []), get_shape('Z')), 0)
+assertEqual(get_score((0, 0), Grid(2, 4, []), get_shape('T')), 0)
+assertEqual(get_score((0, 0), Grid(2, 4, []), get_shape('I')), 0)
+assertEqual(get_score((0, 1), Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('L')), 0)
+assertEqual(get_score((0, 1), Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('Z')), 0)
+assertEqual(get_score((0, 1), Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('T')), 0)
+assertEqual(get_score((0, 1), Grid(3, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('I')), 0)
+assertEqual(get_score((0, 0), Grid(2, 6, []), get_shape('L')), 0)
+assertEqual(get_score((0, 0), Grid(2, 6, []), get_shape('Z')), 0)
 assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
 assertEqual(get_score((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), 2)
 
 # Tests for rotate90
 a_Shape = Shape('L',[[False, False, True], [True, True, True]], 0)
 a_Shape.rotate90()
-assertEqual(a_Shape.squares,[[True, False], [True, False], [True, True]])
+assertEqual(a_Shape.squares, [[True, False], [True, False], [True, True]])
 a_Shape.rotate90()
-assertEqual(a_Shape.squares,[[True, True, True], [True, False, False]])
+assertEqual(a_Shape.squares, [[True, True, True], [True, False, False]])
 a_Shape.rotate90()
-assertEqual(a_Shape.squares,[[True, True], [False, True], [False, True]])
+assertEqual(a_Shape.squares, [[True, True], [False, True], [False, True]])
 
-b_Shape = Shape('I',[[True, True, True, True],], 0)
+b_Shape = Shape('I', [[True, True, True, True],], 0)
 b_Shape.rotate90()
-assertEqual(b_Shape.squares,[[True], [True], [True], [True]])
+assertEqual(b_Shape.squares, [[True], [True], [True], [True]])
 b_Shape.rotate90()
-assertEqual(b_Shape.squares,[[True, True, True, True],])
+assertEqual(b_Shape.squares, [[True, True, True, True],])
 
-c_Shape = Shape('Z',[[True, True, False], [False, True, True]], 0)
+c_Shape = Shape('Z', [[True, True, False], [False, True, True]], 0)
 c_Shape.rotate90()
-assertEqual(c_Shape.squares,[[False, True], [True, True], [True, False]])
+assertEqual(c_Shape.squares, [[False, True], [True, True], [True, False]])
 c_Shape.rotate90()
-assertEqual(c_Shape.squares,[[True, True, False], [False, True, True]])
+assertEqual(c_Shape.squares, [[True, True, False], [False, True, True]])
 
-d_Shape = Shape('T',[[True, True, True], [False, True, False]], 0)
+d_Shape = Shape('T', [[True, True, True], [False, True, False]], 0)
 d_Shape.rotate90()
-assertEqual(d_Shape.squares,[[False, True], [True, True], [False, True]])
+assertEqual(d_Shape.squares, [[False, True], [True, True], [False, True]])
 d_Shape.rotate90()
-assertEqual(d_Shape.squares,[[False, True, False], [True, True, True]])
+assertEqual(d_Shape.squares, [[False, True, False], [True, True, True]])
 d_Shape.rotate90()
-assertEqual(d_Shape.squares,[[True, False], [True, True], [True, False]])
+assertEqual(d_Shape.squares, [[True, False], [True, True], [True, False]])
 
 # Tests for updateGrid
 #a_Grid = Grid(2, 4, [])
