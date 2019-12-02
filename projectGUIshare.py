@@ -1,5 +1,7 @@
 from project_1 import *
 
+import tkinter as tk
+
 # Group is Aidan, Dylan, and Denise
 
 class PackingSimulation():
@@ -31,6 +33,8 @@ class PackingSimulation():
         Draws the shape parameter onto the existing canvas. 
         Calls: draw_square
         """
+        for
+            for
                     
     def run(self, grid):
         print("run************************************")
@@ -40,7 +44,7 @@ class PackingSimulation():
         if self.shapes:
             next_shape = get_shape(self.shapes.pop(0))
             print("run", next_shape)
-            run_flag = grid.update_grid(next_shape)
+            run_flag = grid.updateGrid(next_shape)
 
         if not run_flag: #stop if full or out of shapes
             filled = sum([ sum(row) for row in grid.squares])
@@ -79,11 +83,11 @@ def start(rows,cols):
     pack_sim.draw_square(2,2,'blue')
 
     #example test draw_shape; comment out before testing run
-    #pack_sim.draw_shape(Shape('L', ((False, False, True),(True, True, True)), 'orange'))
+    pack_sim.draw_shape(Shape('L', ((False, False, True),(True, True, True)), 'orange'))
 
     #test run
-    #grid = Grid(rows, cols, [])
-    #pack_sim.master.after(100, pack_sim.run, grid) 
+    grid = Grid(rows, cols, [])
+    pack_sim.master.after(100, pack_sim.run, grid) 
     root_window.mainloop()
 
 start(20,10)

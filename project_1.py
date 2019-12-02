@@ -44,7 +44,7 @@ class Grid:
         for row in range(len(shape.squares)):
             for col in range(len(shape.squares[0])):
                 if shape.squares[row][col]==True:
-                    self.squres[location[0]+row][location[1]+col]
+                    self.squares[location[0]+row][location[1]+col]
         self.print()
         return fits
         
