@@ -201,7 +201,7 @@ def find_max_score_location(grid, shape):
     maxScoreLocation = ((0, 0), -1)
     currentScore = ()
     rotations = 0
-    while shape.num_rotations<3:
+    while shape.num_rotations < 3:
         currentScore = get_max_score(get_valid_locations(generate_all_locations(grid, shape), grid, shape), grid, shape)
         if maxScoreLocation[1] < currentScore[1]:
             maxScoreLocation = currentScore
