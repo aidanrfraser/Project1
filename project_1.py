@@ -182,7 +182,7 @@ def get_score(location, grid, shape):
     score = 0
     for row in range(len(shape.squares)):
         for col in range(len(shape.squares[0])):
-            if (not shape.squares[row][col]) and grid.squares[location[0]+row][location[1]+col]:
+            if (not shape.squares[row][col]) and grid.squares[location[0] + row][location[1] + col]:
                 score += 1
     return score
     
