@@ -136,16 +136,16 @@ def fits(location, grid, shape):
     already on grid.
     location: row,col tuple
     """
-    tempSpace = []
+    temporary = []
     for element in range(location[0], location[0] + len(shape.squares)):
         if location[0] + len(shape.squares) > len(grid.squares):
             return False
         elif location[1] + len(shape.squares[0]) > len(grid.squares[element]):
             return False
-        tempSpace += [grid.squares[element][location[1]:location[1] + len(shape.squares[0])]]
-    for cols in range(len(tempSpace[0])):
-        for rows in range(len(tempSpace)):
-            if tempSpace[rows][cols] and shape.squares[rows][cols]:
+        temporary += [grid.squares[element][location[1]:location[1] + len(shape.squares[0])]]
+    for cols in range(len(temporary[0])):
+        for rows in range(len(temporary)):
+            if temporary[rows][cols] and shape.squares[rows][cols]:
                 return False
     return True
             
