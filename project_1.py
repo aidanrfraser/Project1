@@ -199,16 +199,16 @@ def find_max_score_location(grid, shape):
     Calls: rotate90, generate_all_locations, get_valid_locations, get_max_score
     """
     maxScoreLocation = ((0, 0), -1)
-    currentScore = ()
+    currentScoreLocation = ()
     rotations = 0
     while shape.num_rotations < 3:
-        currentScore = get_max_score(get_valid_locations(generate_all_locations(grid, shape), grid, shape), grid, shape)
-        if maxScoreLocation[1] < currentScore[1]:
-            maxScoreLocation = currentScore
+        currentScoreLocation = get_max_score(get_valid_locations(generate_all_locations(grid, shape), grid, shape), grid, shape)
+        if maxScoreLocation[1] < currentScoreLocation[1]:
+            maxScoreLocation = currentScoreLocation
             rotations = shape.num_rotations
             fitting = fits(maxScoreLocation[0], grid, shape)
-        elif maxScoreLocation[1] == currentScore[1] and currentScore[0] > maxScoreLocation[0]:
-            maxScoreLocation = currentScore
+        elif maxScoreLocation[1] == currentScoreLocation[1] and currentScoreLocation[0] > maxScoreLocation[0]:
+            maxScoreLocation = currentScoreLocation
             rotations = shape.num_rotations
             fitting = fits(maxScoreLocation[0], grid, shape)
         shape.rotate90()
