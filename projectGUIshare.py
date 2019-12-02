@@ -24,7 +24,7 @@ class PackingSimulation():
         Draws one square onto the existing game figure. Be careful mapping
         row and col onto x and y. Calls canvas.create_rectangle
         """
-        return self.canvas.create_rectangle(x*self.scale, y*self.scale, \
+        return self.canvas.create_rectangle(x * self.scale, y * self.scale, \
                                      (x + 1) * self.scale, (y + 1) * self.scale, fill = color)
         
         
@@ -33,10 +33,10 @@ class PackingSimulation():
         Draws the shape parameter onto the existing canvas. 
         Calls: draw_square
         """
-        for row in self.shapes:
-            for col in self.shapes:
-                if shape.squares[row][col] == True:
-                    self.draw_square(row, col, shape.color)
+        for row in range(len(shape.squares)):
+            for col in range(len(shape.squares[0])):
+                if shape.squares[row][col]:
+                    self.draw_square(shape.squares * row, shape.squares[0] * col, shape.color)
                     
     def run(self, grid):
         print("run************************************")
