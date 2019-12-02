@@ -267,7 +267,7 @@ def get_shape(letter):
 assertEqual(get_shape('L').squares, ((False, False, True), (True, True, True)))
 assertEqual(get_shape('T').squares, ((True, True, True), (False, True, False)))
 assertEqual(get_shape('Z').squares, ((True, True, False), (False, True, True)))
-assertEqual(get_shape('I').squares, ((False, False, False, False), (True, True, True, True)))
+assertEqual(get_shape('I').squares, ((True, True, True, True), ))
 
 # Tests for fits
 assertEqual(fits((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), True)
