@@ -197,57 +197,22 @@ def find_max_score_location(grid, shape):
     numberRotations: 0-3 rotations required for best fit.
     Calls: rotate90, generate_all_locations, get_valid_locations, get_max_score
     """
-    location_list = generate_all_locations(grid, shape)
-    location_list = get_valid_locations(location_list, grid, shape)
-    if not location_list:
-        return (False, 0, (0, 0))
-    else:
-        fitting = True
-        savedScore = 0
-        currentRotated = 0
-        bestLocation = (0,0)
-        bestRotated = 0
-        for element in [1, 2, 3, 4]:
-            location_list = get_valid_locations(location_list, grid, shape)
-            currentScore = get_max_score(location_list, grid, shape)[1]
-            currentLocation = get_max_score(location_list, grid, shape)[0]
-            maxScoreRow = get_max_score(location_list, grid, shape)[0][0]
-            maxScoreCol = get_max_score(location_list, grid, shape)[0][1]
-            if currentScore > savedScore:
-                bestRotated = currentRotated
-                bestLocation = currentLocation
-                savedScore = currentScore
-                shape.x = maxScoreCol
-                shape.y = maxScoreRow
-            elif currentScore == savedScore:
-                if bestLocation[0] < currentLocation[0]:
-                    bestRotated = currentRotated
-                    bestLocation = currentLocation
-                    shape.x = maxScoreCol
-                    shape.y = maxScoreRow
-                elif bestLocation[0] > currentLocation[0]:
-                    bestRotated = bestRotated
-                    bestLocation = currentLocation
-                    shape.x = maxScoreCol
-                    shape.y = maxScoreRow
-                elif bestLocation[0] == currentLocation[0]:
-                    if bestLocation[1] < currentLocation[1]:
-                        bestRotated = currentRotated
-                        bestLocation = currentLocation
-                        shape.x = maxScoreCol
-                        shape.y = maxScoreRow
-                    elif bestLocation[1] > currentLocation[1]:
-                        bestRotated = bestRotated
-                        bestLocation = currentLocation
-                        shape.x = maxScoreCol
-                        shape.y = maxScoreRow
-                    elif bestLocation[1] == currentLocation[1]:
-                        bestLocation = currentLocation
-                        shape.x = maxScoreCol
-                        shape.y = maxScoreRow
-            shape.rotate90()
-            currentRotated += 1
-        return (fitting, bestRotated, bestLocation)
+    maxScoreLocation = ((0, 0), -1)
+    currentScore = ()
+    rotations = 0
+    while shape.num_rotations < 3:
+        currentScore = get_max_score(get_valid_locations(generate_all_locations(grid, shape), grid, shape), grid, shape)
+        if maxScoreLocation[1] < currentScore[1]:
+            maxScoreLocation = currentScore
+            rotations = shape.num_rotations
+            fit = fits(maxScoreLocation[0], grid, shape)
+        elif maxScoreLocation[1] == currentScore[1] and currentScore[0] > maxScoreLocation[0]:
+            maxScoreLocation = currentScore
+            rotations = shape.num_rotations
+            fit = fits(maxScoreLocation[0], grid, shape)
+        shape.rotate90()
+    shape.rotate90()
+    return (fit, rotations, maxScoreLocation[0])
     
 def get_shape(letter):
     """
