@@ -92,14 +92,16 @@ class Shape:
         Mutates squares and num_rotations
         Returns None
         """
-        self.num_rotations = 0
-        initial = transpose(self)
-        for i in range(len(initial)):
-            initial[i] = initial[i][::-1]
-        self.squares = initial
-        self.num_rotations += 1
-        self.num_rotations = self.num_rotations % 4
-        return None
+        self.num_rotations=self.num_rotations+1
+        if self.num_rotations==4:
+            self.num_rotations=0
+        column=[]
+        for x in range(len(self.squares[0])):
+            row=[]
+            for y in range(len(self.squares)-1,-1,-1):
+                row+=[self.squares[y][x]]
+            column+=[row]
+        self.squares=column
     
 def generate_all_locations(grid, shape):
     """
@@ -177,12 +179,11 @@ def get_score(location, grid, shape):
     location: row,col tuple
     Returns: number
     """
-    score = 0
+    score=0
     for row in range(len(shape.squares)):
         for col in range(len(shape.squares[0])):
-            if shape.squares[row][col] == False:
-                if grid.squares[location[0] + row][location[1] + col] == True:
-                    score += 1
+            if (not shape.squares[row][col]) and grid.squares[location[0]+row][location[1]+col]:
+                score+=1
     return score
     
 def find_max_score_location(grid, shape):
@@ -197,22 +198,22 @@ def find_max_score_location(grid, shape):
     numberRotations: 0-3 rotations required for best fit.
     Calls: rotate90, generate_all_locations, get_valid_locations, get_max_score
     """
-    max_score_location = ((0,0),-1)
-    current_score = ()
+    maxScoreLocation = ((0 ,0), -1)
+    currentScore = ()
     rotations = 0
-    for element in range(4):
-        current_score=get_max_score(get_valid_locations(generate_all_locations(grid,shape),grid,shape),grid,shape)
-        if max_score_location[1]<current_score[1]:
-            max_score_location=current_score
-            rotations=shape.num_rotations
-            fit=fits(max_score_location[0],grid,shape)
-        elif max_score_location[1]==current_score[1] and current_score[0]>max_score_location[0]:
-            max_score_location=current_score
-            rotations=shape.num_rotations
-            fit=fits(max_score_location[0],grid,shape)
+    while shape.num_rotations<3:
+        currentScore = get_max_score(get_valid_locations(generate_all_locations(grid, shape), grid, shape), grid, shape)
+        if maxScoreLocation[1] < currentScore[1]:
+            maxScoreLocation = currentScore
+            rotations = shape.num_rotations
+            fit = fits(maxScoreLocation[0], grid, shape)
+        elif maxScoreLocation[1] == currentScore[1] and currentScore[0] > maxScoreLocation[0]:
+            maxScoreLocation = currentScore
+            rotations = shape.num_rotations
+            fit = fits(maxScoreLocation[0], grid, shape)
         shape.rotate90()
     shape.rotate90()
-    return (fit, rotations, max_score_location[0])
+    return (fit, rotations, maxScoreLocation[0])
     
 def get_shape(letter):
     """
@@ -220,13 +221,13 @@ def get_shape(letter):
     T for a T; L for an L on its back, foot to right; Z for a Z. More may be added.
     """
     if letter == 'L':
-        return Shape('L', ((False, False, True), (True, True, True)), 0)
+        return Shape('L', ((False, False, True), (True, True, True)), 'Red')
     elif letter == 'T':
-        return Shape('T', ((True, True, True), (False, True, False)), 0)
+        return Shape('T', ((True, True, True), (False, True, False)), 'Blue')
     elif letter == 'Z':
-        return Shape('Z', ((True, True, False), (False, True, True)), 0)
+        return Shape('Z', ((True, True, False), (False, True, True)), 'Green')
     elif letter == 'I':
-        return Shape('I', ((True, True, True, True),), 0)
+        return Shape('I', ((True, True, True, True),), 'Orange')
     
 # Tests for get_shape
 assertEqual(get_shape('L').squares, ((False, False, True), (True, True, True)))
