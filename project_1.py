@@ -264,13 +264,11 @@ def get_shape(letter):
         return Shape('I', ((True, True, True, True),), 0)
     
 # Tests for get_shape
-"""
-assertEqual(get_shape('L'), Shape('L', ((False, False, True), (True, True, True)), 0))
-assertEqual(get_shape('T'), Shape('T', ((True, True, True), (False, True, False)), 0))
-assertEqual(get_shape('Z'), Shape('Z', ((True, True, False), (False, True, True)), 0))
-assertEqual(get_shape('I'), Shape('I', ((False, False, False, False), (True, True, True, True)), 0))
-"""
 assertEqual(get_shape('L').squares, ((False, False, True), (True, True, True)))
+assertEqual(get_shape('T').squares, ((True, True, True), (False, True, False)))
+assertEqual(get_shape('Z').squares, ((True, True, False), (False, True, True)))
+assertEqual(get_shape('I').squares, ((False, False, False, False), (True, True, True, True)))
+
 # Tests for fits
 assertEqual(fits((0, 0), Grid(2, 3, [[True, True, False], [False, False, False]]), get_shape('L')), True)
 assertEqual(fits((0, 0), Grid(2, 3, [[True, True, True], [True, True, True]]), get_shape('L')), False)
