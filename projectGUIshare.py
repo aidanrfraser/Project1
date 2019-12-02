@@ -33,10 +33,10 @@ class PackingSimulation():
         Draws the shape parameter onto the existing canvas. 
         Calls: draw_square
         """
-        for row in range(len(shape.squares)):
-            for col in range(len(shape.squares[0])):
-                if shape.squares[row][col]:
-                    self.draw_square(len(shape.squares) + row, len(shape.squares[0]) + col, shape.color)
+        for rows in range(len(shape.squares)):
+            for cols in range(len(shape.squares[0])):
+                if shape.squares[rows][cols]:
+                    self.draw_square(shape.y + cols,shape.x + rows, shape.color)
                     
     def run(self, grid):
         print("run************************************")

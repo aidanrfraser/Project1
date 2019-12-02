@@ -197,22 +197,22 @@ def find_max_score_location(grid, shape):
     numberRotations: 0-3 rotations required for best fit.
     Calls: rotate90, generate_all_locations, get_valid_locations, get_max_score
     """
-    maxScoreLocation = ((0, 0), -1)
-    currentScore = ()
+    max_score_location = ((0,0),-1)
+    current_score = ()
     rotations = 0
-    while shape.num_rotations < 3:
-        currentScore = get_max_score(get_valid_locations(generate_all_locations(grid, shape), grid, shape), grid, shape)
-        if maxScoreLocation[1] < currentScore[1]:
-            maxScoreLocation = currentScore
-            rotations = shape.num_rotations
-            fit = fits(maxScoreLocation[0], grid, shape)
-        elif maxScoreLocation[1] == currentScore[1] and currentScore[0] > maxScoreLocation[0]:
-            maxScoreLocation = currentScore
-            rotations = shape.num_rotations
-            fit = fits(maxScoreLocation[0], grid, shape)
+    for element in range(4):
+        current_score=get_max_score(get_valid_locations(generate_all_locations(grid,shape),grid,shape),grid,shape)
+        if max_score_location[1]<current_score[1]:
+            max_score_location=current_score
+            rotations=shape.num_rotations
+            fit=fits(max_score_location[0],grid,shape)
+        elif max_score_location[1]==current_score[1] and current_score[0]>max_score_location[0]:
+            max_score_location=current_score
+            rotations=shape.num_rotations
+            fit=fits(max_score_location[0],grid,shape)
         shape.rotate90()
     shape.rotate90()
-    return (fit, rotations, maxScoreLocation[0])
+    return (fit, rotations, max_score_location[0])
     
 def get_shape(letter):
     """
@@ -283,18 +283,18 @@ assertEqual(get_max_score([(0, 0), (0, 1)], Grid(3, 8, []), get_shape('Z')), ((0
 assertEqual(get_max_score([(0, 0), (0, 1)], Grid(2, 4, []), get_shape('L')), ((0, 1), 0))
 
 # Tests for find_max_score_location
-#assertEqual(find_max_score_location(Grid(3, 4, []), get_shape('L')), (True, 0, (1, 1)))
-#assertEqual(find_max_score_location(Grid(3, 4, []), get_shape('T')), (True, 0, (1, 1)))
-#assertEqual(find_max_score_location(Grid(3, 4, []), get_shape('Z')), (True, 0, (1, 1)))
-#assertEqual(find_max_score_location(Grid(4, 4, []), get_shape('I')), (True, 0, (3, 3)))
-#assertEqual(find_max_score_location(Grid(4, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('L')), (True, 2, (2, 0)))
-#assertEqual(find_max_score_location(Grid(4, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('T')), (True, 3, (1, 0)))
-#assertEqual(find_max_score_location(Grid(4, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('Z')), (True, 1, (1, 0)))
-#assertEqual(find_max_score_location(Grid(4, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('I')), (True, 1, (2, 0)))
-#assertEqual(find_max_score_location(Grid(4, 6, []), get_shape('L')), (True, 0, (2, 3)))
-#assertEqual(find_max_score_location(Grid(4, 6, []), get_shape('T')), (True, 0, (2, 3)))
-#assertEqual(find_max_score_location(Grid(3, 4, [[True, False, False, False], [False, False, False, False], [False, False, False, False]]), get_shape('L')), (True, 0, (0, 1))) 
-#assertEqual(find_max_score_location(Grid(3, 4, []), get_shape('L')), (True, 0, (0, 1)))
+assertEqual(find_max_score_location(Grid(3, 4, []), get_shape('L')), (True, 0, (1, 1)))
+assertEqual(find_max_score_location(Grid(3, 4, []), get_shape('T')), (True, 0, (1, 1)))
+assertEqual(find_max_score_location(Grid(3, 4, []), get_shape('Z')), (True, 0, (1, 1)))
+assertEqual(find_max_score_location(Grid(4, 4, []), get_shape('I')), (True, 0, (3, 3)))
+assertEqual(find_max_score_location(Grid(4, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('L')), (True, 2, (2, 0)))
+assertEqual(find_max_score_location(Grid(4, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('T')), (True, 3, (1, 0)))
+assertEqual(find_max_score_location(Grid(4, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('Z')), (True, 1, (1, 0)))
+assertEqual(find_max_score_location(Grid(4, 4, [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 1, 1, 1]]), get_shape('I')), (True, 1, (2, 0)))
+assertEqual(find_max_score_location(Grid(4, 6, []), get_shape('L')), (True, 0, (2, 3)))
+assertEqual(find_max_score_location(Grid(4, 6, []), get_shape('T')), (True, 0, (2, 3)))
+assertEqual(find_max_score_location(Grid(3, 4, [[True, False, False, False], [False, False, False, False], [False, False, False, False]]), get_shape('L')), (True, 0, (0, 1))) 
+assertEqual(find_max_score_location(Grid(3, 4, []), get_shape('L')), (True, 0, (0, 1)))
 
 # Tests for get_score
 assertEqual(get_score((0,0),Grid(2, 4, []), get_shape('L')), 0)
