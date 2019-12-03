@@ -54,13 +54,13 @@ class Grid:
         Print the grid, using an asterisk for each true square, underscore for false.
         Use a newline after each row, and no spaces in rows.
         """
-        for elt1 in range(self.numRows):
-            alist=self.squares[elt1]
-            for elt2 in range(self.numCols):
-                if alist[elt2]:
-                    print('*',end='\f')
+        for element1 in range(self.numRows):
+            alist = self.squares[element1]
+            for element2 in range(self.numCols):
+                if alist[element2]:
+                    print('*', end = '\f')
                 else:
-                    print('_',end='\f')
+                    print('_', end = '\f')
             print('\t')
     
 class Shape:
