@@ -35,17 +35,17 @@ class Grid:
         Calls: find_max_score_location
         Returns boolean: fits or not
         """
-        testing=find_max_score_location(self,shape)
-        location=testing[2]
-        fits=testing[0]
-        numRotations=testing[1]
+        testing = find_max_score_location(self, shape)
+        location = testing[2]
+        fits = testing[0]
+        numRotations = testing[1]
         while numRotations:
             shape.rotate90()
-            numRotations -=1
+            numRotations -= 1
         for row in range(len(shape.squares)):
             for col in range(len(shape.squares[0])):
-                if shape.squares[row][col]==True:
-                    self.squares[location[0]+row][location[1]+col] = True
+                if shape.squares[row][col] == True:
+                    self.squares[location[0] + row][location[1] + col] = True
         self.print()
         return fits
         
