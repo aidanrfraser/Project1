@@ -39,12 +39,13 @@ class Grid:
         location=testing[2]
         fits=testing[0]
         numRotations=testing[1]
-        for rotations in range(numRotations):
-            shape.rotate90
+        while numRotations:
+            shape.rotate90()
+            numRotations -=1
         for row in range(len(shape.squares)):
             for col in range(len(shape.squares[0])):
                 if shape.squares[row][col]==True:
-                    self.squares[location[0]+row][location[1]+col]
+                    self.squares[location[0]+row][location[1]+col] = True
         self.print()
         return fits
         
@@ -62,13 +63,6 @@ class Grid:
                     print('_',end='\f')
             print('\t')
     
-def transpose(shape):
-    result = [len(shape.squares) * [False] for r in range(len(shape.squares[0]))]
-    for i in range(len(shape.squares)):
-        for j in range(len(shape.squares[0])):
-            result[j][i] = shape.squares[i][j]
-    return result
-    
 class Shape:
     """
     A "shape" is a nested tuple
@@ -79,8 +73,8 @@ class Shape:
     """
     
     def __init__(self, letter, squares, color):
-        self.x = 0
-        self.y = 0
+        self.rows = 0
+        self.cols = 0
         self.letter = letter
         self.squares = squares
         self.color = color
@@ -110,11 +104,11 @@ def generate_all_locations(grid, shape):
     Returns: a list of row,col tuples
     """
     location_list = []
-    for rows in range(grid.numRows):
-        for cols in range(grid.numCols):
-            if rows + len(shape.squares) <= grid.numRows:
-                if cols + len(shape.squares[0]) <= grid.numCols:
-                    location_list += [(rows, cols)]
+    for x in range(grid.numRows):
+        if x + len(shape.squares) <= grid.numRows:
+            for y in range(grid.numCols):
+                if y + len(shape.squares[0]) <= grid.numCols:
+                    location_list = location_list + [(x, y)]
     return location_list
     
 def get_valid_locations(location_list, grid, shape):
@@ -124,11 +118,11 @@ def get_valid_locations(location_list, grid, shape):
     potential fits for this shape.
     Calls: fits
     """
-    valid = []
-    for location in location_list:
-        if fits(location, grid, shape):
-            valid += [location]
-    return valid
+    validLocations = []
+    for x in location_list:
+        if fits(x, grid, shape):
+            validLocations = validLocations + [x]
+    return validLocations
 
 def fits(location, grid, shape):
     """
@@ -170,7 +164,7 @@ def get_max_score(location_list, grid, shape):
             elif location[0] > max_score_location[0]:
                 max_score_location = location
                 max_score = get_score(location, grid, shape)
-    return ((max_score_location), max_score)
+    return (max_score_location, max_score)
                                              
 def get_score(location, grid, shape):
     """
@@ -199,16 +193,16 @@ def find_max_score_location(grid, shape):
     Calls: rotate90, generate_all_locations, get_valid_locations, get_max_score
     """
     maxScoreLocation = ((0, 0), -1)
-    currentScoreLocation = ()
+    currentScore = ()
     rotations = 0
     while shape.num_rotations < 3:
-        currentScoreLocation = get_max_score(get_valid_locations(generate_all_locations(grid, shape), grid, shape), grid, shape)
-        if maxScoreLocation[1] < currentScoreLocation[1]:
-            maxScoreLocation = currentScoreLocation
+        currentScore = get_max_score(get_valid_locations(generate_all_locations(grid, shape), grid, shape), grid, shape)
+        if maxScoreLocation[1] < currentScore[1]:
+            maxScoreLocation = currentScore
             rotations = shape.num_rotations
             fitting = fits(maxScoreLocation[0], grid, shape)
-        elif maxScoreLocation[1] == currentScoreLocation[1] and currentScoreLocation[0] > maxScoreLocation[0]:
-            maxScoreLocation = currentScoreLocation
+        elif maxScoreLocation[1] == currentScore[1] and currentScore[0] > maxScoreLocation[0]:
+            maxScoreLocation = currentScore
             rotations = shape.num_rotations
             fitting = fits(maxScoreLocation[0], grid, shape)
         shape.rotate90()
