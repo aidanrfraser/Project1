@@ -67,11 +67,10 @@ class Shape:
     """
     A "shape" is a nested tuple
     For example, an "L" shape could be represented as:
-    ((False, False, True),(True, True, True))
+    ((False, False, True), (True, True, True))
     Has attributes x, y, letter, squares (a nested list of type boolean),
     color, num_rotations
     """
-    
     def __init__(self, letter, squares, color):
         self.y = 0
         self.x = 0
@@ -86,22 +85,22 @@ class Shape:
         Mutates squares and num_rotations
         Returns None
         """
-        self.num_rotations=self.num_rotations+1
-        if self.num_rotations==4:
-            self.num_rotations=0
-        column=[]
+        self.num_rotations = self.num_rotations + 1
+        if self.num_rotations == 4:
+            self.num_rotations = 0
+        column = []
         for x in range(len(self.squares[0])):
-            row=[]
-            for y in range(len(self.squares)-1,-1,-1):
-                row+=[self.squares[y][x]]
-            column+=[row]
-        self.squares=column
+            row = []
+            for y in range(len(self.squares) - 1, -1, -1):
+                row += [self.squares[y][x]]
+            column += [row] 
+        self.squares = column
     
 def generate_all_locations(grid, shape):
     """
     Takes a single shape in one position and finds all the places it could fit on the
     grid, given its dimensions.
-    Returns: a list of row,col tuples
+    Returns: a list of row, col tuples
     """
     location_list = []
     for x in range(grid.numRows):
@@ -119,16 +118,16 @@ def get_valid_locations(location_list, grid, shape):
     Calls: fits
     """
     validLocations = []
-    for x in location_list:
-        if fits(x, grid, shape):
-            validLocations = validLocations + [x]
+    for location in location_list:
+        if fits(location, grid, shape):
+            validLocations = validLocations + [location]
     return validLocations
 
 def fits(location, grid, shape):
     """
     Returns True if shape placed at location does not overlap shapes
     already on grid.
-    location: row,col tuple
+    location: row, col tuple
     """
     temporary = []
     for element in range(location[0], location[0] + len(shape.squares)):
@@ -148,7 +147,7 @@ def get_max_score(location_list, grid, shape):
     Finds highest scoring location from list, given shape.
     When scores are equal, the lowest row (highest row number), right end (highest
     column) should be preferred.
-    Return: nested tuple of (location_tuple,number)
+    Return: nested tuple of (location_tuple, number)
     Calls: get_score
     """
     max_score = 0
@@ -170,7 +169,7 @@ def get_score(location, grid, shape):
     """
     Computes the score for a shape placed at a single location on grid.
     Scores are positive, higher is better. For now, code the heuristic discussed in class.
-    location: row,col tuple
+    location: row, col tuple
     Returns: number
     """
     score = 0
@@ -186,7 +185,7 @@ def find_max_score_location(grid, shape):
     and three possible 90 degree rotations. Mutates shape for each rotation.
     When scores are equal, the lowest row (highest row number), right end (highest
     column) should be preferred.
-    Returns tuple: (fits numberRotations location)
+    Returns tuple: (fits, numberRotations, location)
     fits: bool
     maxScoreRow, maxScoreCol: upper left coordinates of best position for shape on grid
     numberRotations: 0-3 rotations required for best fit.
