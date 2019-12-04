@@ -72,11 +72,13 @@ def start(rows,cols):
     Returns: None
     """
     global delay
-    delay = 10 #msec
+    delay = 1 #msec
     global letterIndex
     letterIndex = 0
     
-    shapes = list('LTIZ') * 300
+    shapes = list('LTIZ') * 3000
+    import random
+    random.shuffle(shapes)
 
     root_window = Tk()
     pack_sim = PackingSimulation(rows, cols, shapes, root_window)
@@ -92,4 +94,4 @@ def start(rows,cols):
     pack_sim.master.after(100, pack_sim.run, grid) 
     root_window.mainloop()
 
-start(20,10)
+start(40,40)

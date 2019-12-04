@@ -214,17 +214,26 @@ def find_max_score_location(grid, shape):
     
 def get_shape(letter):
     """
-    Returns the Shape corresponding to the letter parameter: I for a line; 
-    T for a T; L for an L on its back, foot to right; Z for a Z. More may be added.
+    Returns the Shape corresponding to the letter parameter: I
+    for a line; T for a T; L for an L on its back, foot to right; Z
+    for a Z. More may be added.
     """
-    if letter == 'L':
-        return Shape('L', ((False, False, True), (True, True, True)), 'Red')
+    if letter == 'L': 
+        return Shape('L', ((False, False, True),(True, True, True)), 'orange')
     elif letter == 'T':
-        return Shape('T', ((True, True, True), (False, True, False)), 'Blue')
-    elif letter == 'Z':
-        return Shape('Z', ((True, True, False), (False, True, True)), 'Green')
+        return Shape('T', ((True, True, True),(False, True, False)), 'purple')
     elif letter == 'I':
-        return Shape('I', ((True, True, True, True),), 'Orange')
+        return Shape('I', [[True, True, True, True]], 'cyan')
+    elif letter == 'Z':
+        return Shape('Z', ((True, True, False), (False, True, True)), 'red')
+    elif letter == 'J':
+        return Shape('J', ((True, True, True), (False, False, True)), 'blue')
+    elif letter == 'O':
+        return Shape('O', ((True, True), (True, True)), 'yellow')
+    elif letter == 'S':
+        return Shape('S', ((False, True, True), (True, True, False)), 'green')
+    else: return None
+
     
 # Tests for get_shape
 assertEqual(get_shape('L').squares, ((False, False, True), (True, True, True)))
